@@ -47,6 +47,8 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
+        \Illuminate\Support\Facades\Gate::authorize('update', $product);
+
         $validated = $request->validate([
             'name' => 'sometimes|string|max:255',
             'quantity' => 'sometimes|integer',
@@ -61,6 +63,8 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
+        \Illuminate\Support\Facades\Gate::authorize('update', $product);
+
         $users = User::orderBy('name')->get();
 
         return view('product.edit', compact('product', 'users'));
@@ -70,8 +74,10 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
+        \Illuminate\Support\Facades\Gate::authorize('delete', $product);
+
         $product->delete();
 
-        return redirect()->route('products.index')->with('success', 'Product berhasil dihapus.');
+        return redirect()->route('product.index')->with('success', 'Product berhasil dihapus');
     }
 }

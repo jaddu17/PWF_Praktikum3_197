@@ -3,9 +3,13 @@
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/product');
 });
+
+
 
 Route::middleware('auth')->group(function () {
     // Product Page
@@ -16,4 +20,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::get('/product/edit/{product}', [ProductController::class, 'edit'])->name('product.edit');
     Route::delete('/product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+
+    // Secure Kategori route using the manage-product gate
+    Route::get('/kategori', function () {
+        return 'Kategori Page (Admin Only)';
+    })->name('kategori.index')->middleware('can:manage-product');
 });

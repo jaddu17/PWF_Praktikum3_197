@@ -10,6 +10,7 @@
                             <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200 tracking-tight">Product List</h2>
                             <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Manage your product inventory</p>
                         </div>
+                        @can('manage-product')
                         <a href="{{ route('product.create') }}"
                            class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition duration-150 shadow-sm">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
@@ -19,6 +20,7 @@
                             </svg>
                             Add Product
                         </a>
+                        @endcan
                     </div>
 
                     <!-- Flash Message -->
@@ -90,6 +92,7 @@
                                                     </svg>
                                                 </a>
 
+                                                @can('update', $product)
                                                 <a href="{{ route('product.edit', $product->id) }}"
                                                    class="p-1.5 rounded-md text-gray-400 hover:text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-900/30 transition"
                                                    title="Edit">
@@ -100,7 +103,9 @@
                                                               d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                     </svg>
                                                 </a>
+                                                @endcan
 
+                                                @can('delete', $product)
                                                 <form action="{{ route('product.delete', $product->id) }}" method="POST"
                                                       onsubmit="return confirm('Delete this product?')">
                                                     @csrf
@@ -116,6 +121,7 @@
                                                         </svg>
                                                     </button>
                                                 </form>
+                                                @endcan
                                             </div>
                                         </td>
                                     </tr>
@@ -138,11 +144,11 @@
                     </div>
 
                     <!-- Pagination -->
-                    @if ($products->hasPages())
+                    {{-- @if ($products->hasPages())
                         <div class="mt-6">
                             {{ $products->links() }}
                         </div>
-                    @endif
+                    @endif --}}
                 </div>
             </div>
         </div>
