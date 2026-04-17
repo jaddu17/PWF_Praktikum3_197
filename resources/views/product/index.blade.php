@@ -11,15 +11,7 @@
                             <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Manage your product inventory</p>
                         </div>
                         @can('manage-product')
-                        <a href="{{ route('product.create') }}"
-                           class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition duration-150 shadow-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
-                                 stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M12 4v16m8-8H4" />
-                            </svg>
-                            Add Product
-                        </a>
+                        <x-add-product :url="route('product.create')" name="Product" />
                         @endcan
                     </div>
 

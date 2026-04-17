@@ -9,7 +9,26 @@ Route::get('/', function () {
     return redirect('/product');
 });
 
+Route::get('/login', function () {
+    return '
+        <div style="font-family: sans-serif; text-align: center; margin-top: 50px;">
+            <h2>Simulasi Login (Tanpa Password)</h2>
+            <p>Klik pengguna berikut ini untuk mensimulasikan login:</p>
+            <a href="/login-admin" style="display:inline-block; padding:10px 20px; background:indigo; color:white; border-radius:5px; text-decoration:none; margin:10px">Login sbg Admin</a>
+            <a href="/login-user" style="display:inline-block; padding:10px 20px; background:gray; color:white; border-radius:5px; text-decoration:none; margin:10px">Login sbg User</a>
+        </div>
+    ';
+})->name('login');
 
+Route::get('/login-admin', function () {
+    \Illuminate\Support\Facades\Auth::loginUsingId(1);
+    return redirect('/product');
+});
+
+Route::get('/login-user', function () {
+    \Illuminate\Support\Facades\Auth::loginUsingId(2);
+    return redirect('/product');
+});
 
 Route::middleware('auth')->group(function () {
     // Product Page
