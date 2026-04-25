@@ -1,10 +1,17 @@
-erd
-<img width="1865" height="490" alt="image" src="https://github.com/user-attachments/assets/6a2e69fd-91a6-4b34-9438-6249d8ab3ec6" />
-model
-<img width="2879" height="1701" alt="image" src="https://github.com/user-attachments/assets/147de92d-dddd-4be6-8e66-91b35d065a19" />
-<img width="2879" height="1705" alt="image" src="https://github.com/user-attachments/assets/0568da78-41a6-4ce9-a730-1d6c237303ba" />
-migration
-<img width="2879" height="1703" alt="image" src="https://github.com/user-attachments/assets/f6752d1d-438b-4be0-811b-3c1b994415b5" />
-<img width="2877" height="1705" alt="image" src="https://github.com/user-attachments/assets/65f27bd5-70e1-4d38-b3b4-c396964cc8f9" />
-database
-<img width="2879" height="1628" alt="image" src="https://github.com/user-attachments/assets/26199014-ebd8-4227-9d6b-b0842d449393" />
+category 
+<img width="2879" height="1628" alt="image" src="https://github.com/user-attachments/assets/c7bbd5fb-1a17-4ddb-818d-52f58519972c" />
+
+add category
+<img width="2879" height="1622" alt="image" src="https://github.com/user-attachments/assets/58ef2b8c-b207-4669-ad6d-fbb240e023e8" />
+
+edit category
+<img width="2879" height="1629" alt="image" src="https://github.com/user-attachments/assets/5b1ca9c2-3947-466d-8c02-ca48aa73d9ea" />
+
+add product ditambahin kolom category
+<img width="2879" height="1619" alt="image" src="https://github.com/user-attachments/assets/a389f6ce-c36b-459c-b63c-7d1bf09ccdd4" />
+
+dashboard admin
+<img width="2850" height="709" alt="image" src="https://github.com/user-attachments/assets/7fa65305-8443-4366-a839-9bbf7c48955a" />
+
+dashboard user
+<img width="2856" height="766" alt="image" src="https://github.com/user-attachments/assets/88d248af-6a67-40bf-954f-fd8a213cafa5" />
