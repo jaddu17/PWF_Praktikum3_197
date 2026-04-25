@@ -32,7 +32,7 @@
                     <input type="text" 
                            id="name" 
                            name="name" 
-                           value="{{ old('name', $category->name) }}"  <!-- Isi default: old input (kalau error) atau data dari DB -->
+                           value="{{ old('name', $category->name) }}"
                            required autofocus
                            class="block w-full bg-[#111827] border-slate-700 text-slate-100 rounded-xl shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all duration-200 py-3.5 px-4"> <!-- Input field -->
 
