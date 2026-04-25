@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
@@ -17,12 +19,20 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        Gate::authorize('create', Product::class);
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'quantity' => 'required|integer',
             'price' => 'required|numeric',
-            'user_id' => 'required|exists:users,id',
+            'category_id' => 'nullable|exists:category,id',
+        ], [
+            'name.required' => 'Nama produk wajib diisi.',
+            'quantity.required' => 'Jumlah (kuantitas) produk wajib diisi.',
+            'price.required' => 'Harga produk wajib diisi.',
         ]);
+
+        $validated['user_id'] = auth()->id();
 
         $product = Product::create($validated);
 
@@ -31,9 +41,12 @@ class ProductController extends Controller
 
     public function create()
     {
-        $users = User::orderBy('name')->get();
+        Gate::authorize('create', Product::class);
 
-        return view('product.create', compact('users'));
+        $users = User::orderBy('name')->get();
+        $categories = Category::orderBy('name')->get();
+
+        return view('product.create', compact('users', 'categories'));
     }
 
     public function show($id)
@@ -47,13 +60,13 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        \Illuminate\Support\Facades\Gate::authorize('update', $product);
+        Gate::authorize('update', $product);
 
         $validated = $request->validate([
             'name' => 'sometimes|string|max:255',
             'quantity' => 'sometimes|integer',
             'price' => 'sometimes|numeric',
-            'user_id' => 'sometimes|exists:users,id',
+            'category_id' => 'nullable|exists:category,id',
         ]);
 
         $product->update($validated);
@@ -63,18 +76,19 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        \Illuminate\Support\Facades\Gate::authorize('update', $product);
+        Gate::authorize('update', $product);
 
         $users = User::orderBy('name')->get();
+        $categories = Category::orderBy('name')->get();
 
-        return view('product.edit', compact('product', 'users'));
+        return view('product.edit', compact('product', 'users', 'categories'));
     }
 
     public function delete($id)
     {
         $product = Product::findOrFail($id);
 
-        \Illuminate\Support\Facades\Gate::authorize('delete', $product);
+        Gate::authorize('delete', $product);
 
         $product->delete();
 

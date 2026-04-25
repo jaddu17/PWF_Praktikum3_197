@@ -8,13 +8,12 @@ use Illuminate\View\Component;
 
 class AddProduct extends Component
 {
-    public $url;
-    public $name;
-
+    public string $url;
+    public string $name;
     /**
      * Create a new component instance.
      */
-    public function __construct($url, $name)
+    public function __construct(string $url, string $name)
     {
         $this->url = $url;
         $this->name = $name;

@@ -23,6 +23,7 @@
 
                         <!-- Action Buttons -->
                         <div class="flex items-center gap-2">
+                            @can('update', $product)
                             <a href="{{ route('product.edit', $product) }}"
                                class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg border border-amber-300 dark:border-amber-600 text-amber-600 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/30 transition">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
@@ -32,6 +33,8 @@
                                 </svg>
                                 Edit
                             </a>
+                            @endcan
+                            @can('delete', $product)
                             <form action="{{ route('product.delete', $product->id) }}" method="POST"
                                   onsubmit="return confirm('Are you sure you want to delete this product?')">
                                 @csrf
@@ -46,6 +49,7 @@
                                     Delete
                                 </button>
                             </form>
+                            @endcan
                         </div>
                     </div>
 
@@ -63,10 +67,10 @@
                             <div class="w-32 shrink-0 text-sm text-gray-500 dark:text-gray-400">Quantity</div>
                             <div>
                                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
-                                    {{ $product->quantity > 0 
+                                    {{ $product->quantity > 10 
                                         ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300' 
                                         : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300' }}">
-                                    {{ $product->quantity }} {{ $product->quantity > 0 ? ' in Stock' : ' Out of Stock' }}
+                                    {{ $product->quantity }} {{ $product->quantity == 0 ? ' Out of Stock' : ($product->quantity <= 10 ? ' Low Stock' : ' in Stock') }}
                                 </span>
                             </div>
                         </div>
